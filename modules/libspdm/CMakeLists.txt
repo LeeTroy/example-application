@@ -156,9 +156,21 @@ if(CONFIG_LIBSPDM)
     )
 
     zephyr_library_sources(
+        ${LIBSPDM_DIR}/os_stub/malloclib/malloclib.c
+    )
+
+    zephyr_library_sources(
+        ${LIBSPDM_DIR}/os_stub/memlib/compare_mem.c
+        ${LIBSPDM_DIR}/os_stub/memlib/copy_mem.c
+        ${LIBSPDM_DIR}/os_stub/memlib/set_mem.c
+        ${LIBSPDM_DIR}/os_stub/memlib/zero_mem.c
+    )
+
+    zephyr_library_sources(
         ${LIBSPDM_ZEPHYR_DIR}/debuglib/debuglib.c
         ${LIBSPDM_ZEPHYR_DIR}/platform_lib/time_zephyr.c
         ${LIBSPDM_ZEPHYR_DIR}/platform_lib/watchdog.c
         ${LIBSPDM_ZEPHYR_DIR}/spdm_device_secret_lib/lib.c
+        ${LIBSPDM_ZEPHYR_DIR}/rnglib/rng_zephyr.c
     ) 
 endif()
