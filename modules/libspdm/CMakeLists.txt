@@ -10,8 +10,10 @@ if(CONFIG_LIBSPDM)
         "${LIBSPDM_DIR}/include"
         "${LIBSPDM_DIR}/include/hal"
         "${LIBSPDM_DIR}/include/hal/${ARCH}"
+        "${LIBSPDM_DIR}/os_stub/include"
+        "${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls"
     )
-
+    zephyr_library_link_libraries(mbedTLS)
     zephyr_library_sources(
         ${LIBSPDM_DIR}/library/spdm_common_lib/libspdm_com_context_data.c
         ${LIBSPDM_DIR}/library/spdm_common_lib/libspdm_com_context_data_session.c
@@ -97,6 +99,60 @@ if(CONFIG_LIBSPDM)
         LIBSPDM_TRANSPORT_PCIDOE
         ${LIBSPDM_DIR}/library/spdm_transport_pcidoe_lib/libspdm_doe_common.c
         ${LIBSPDM_DIR}/library/spdm_transport_pcidoe_lib/libspdm_doe_pcidoe.c
+    )
+
+    zephyr_library_sources_ifdef(
+        LIBSPDM_CRYPTO_MBEDTLS
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/cipher/aead_aes_gcm.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/cipher/aead_chacha20_poly1305.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/cipher/aead_sm4_gcm.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hash/sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hash/sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hash/sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hmac/hmac_sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hmac/hmac_sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/hmac/hmac_sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/kdf/hkdf_sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/kdf/hkdf_sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/kdf/hkdf_sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pem/pem.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/ec.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/ecd.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/ecx.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/dh.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/sm2.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/rsa_basic.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/rsa_ext.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/pk/x509.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/rand/rand.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/sys_call/mem_allocation.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/sys_call/crt_wrapper_host.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls/sys_call/timer_wrapper_host.c
+    )
+
+    zephyr_library_sources(
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_aes_gcm.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_chacha20_poly1305.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_sm4_gcm.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sha.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sha3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sm3.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pem/pem.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ec.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ecd.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ecx.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/dh.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/sm2.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/rsa_basic.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/rsa_ext.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/x509.c
+        ${LIBSPDM_DIR}/os_stub/cryptlib_null/rand/rand.c
     )
 
     zephyr_library_sources(
