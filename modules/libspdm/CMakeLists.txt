@@ -11,7 +11,7 @@ if(CONFIG_LIBSPDM)
         "${LIBSPDM_DIR}/include/hal"
         "${LIBSPDM_DIR}/include/hal/${ARCH}"
         "${LIBSPDM_DIR}/os_stub/include"
-        "${LIBSPDM_DIR}/os_stub/cryptlib_mbedtls"
+        "${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr"
     )
     zephyr_library_link_libraries(mbedTLS)
     zephyr_library_sources(
@@ -131,28 +131,28 @@ if(CONFIG_LIBSPDM)
     )
 
     zephyr_library_sources(
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_aes_gcm.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_chacha20_poly1305.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/cipher/aead_sm4_gcm.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sha.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sha3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hash/sm3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sha.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sha3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/hmac/hmac_sm3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sha.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sha3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/kdf/hkdf_sm3.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pem/pem.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ec.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ecd.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/ecx.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/dh.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/sm2.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/rsa_basic.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/rsa_ext.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/pk/x509.c
-        ${LIBSPDM_DIR}/os_stub/cryptlib_null/rand/rand.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/cipher/aead_aes_gcm.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/cipher/aead_chacha20_poly1305.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/cipher/aead_sm4_gcm.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hash/sha.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hash/sha3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hash/sm3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hmac/hmac_sha.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hmac/hmac_sha3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/hmac/hmac_sm3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/kdf/hkdf_sha.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/kdf/hkdf_sha3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/kdf/hkdf_sm3.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pem/pem.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/ec.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/ecd.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/ecx.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/dh.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/sm2.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/rsa_basic.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/rsa_ext.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/pk/x509.c
+        ${LIBSPDM_ZEPHYR_DIR}/cryptlib_zephyr/rand/rand.c
     )
 
     zephyr_library_sources(
