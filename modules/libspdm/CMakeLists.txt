@@ -1,14 +1,14 @@
 if(CONFIG_LIBSPDM)
     set(LIBSPDM_DIR ${ZEPHYR_CURRENT_MODULE_DIR})
+    set(LIBSPDM_ZEPHYR_DIR ${CMAKE_CURRENT_LIST_DIR})
     set(ARCH "arm")
-
-    message("TTTTTTTT ${LIBSPDM_DIR}")
 
     zephyr_library()
     zephyr_include_directories(
         include
         "${LIBSPDM_DIR}"
         "${LIBSPDM_DIR}/include"
+        "${LIBSPDM_DIR}/include/hal"
         "${LIBSPDM_DIR}/include/hal/${ARCH}"
     )
 
@@ -99,6 +99,10 @@ if(CONFIG_LIBSPDM)
         ${LIBSPDM_DIR}/library/spdm_transport_pcidoe_lib/libspdm_doe_pcidoe.c
     )
 
-# zephyr_library_sources()
-
+    zephyr_library_sources(
+        ${LIBSPDM_ZEPHYR_DIR}/debuglib/debuglib.c
+        ${LIBSPDM_ZEPHYR_DIR}/platform_lib/time_zephyr.c
+        ${LIBSPDM_ZEPHYR_DIR}/platform_lib/watchdog.c
+        ${LIBSPDM_ZEPHYR_DIR}/spdm_device_secret_lib/lib.c
+    ) 
 endif()
