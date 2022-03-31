@@ -1,0 +1,5 @@
+config LIBSPDM
+	bool "DMTF LibSPDM Support"
+	help
+	  Enable this option to install libspdm into firmware.
+

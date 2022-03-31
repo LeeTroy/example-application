@@ -8,9 +8,15 @@ manifest:
   remotes:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
+    - name: leetroy
+      url-base: https://github.com/leetroy
 
   projects:
     - name: zephyr
       remote: zephyrproject-rtos
       revision: main
       import: true
+    - name: libspdm
+      remote: leetroy
+      path: modules/lib/libspdm
+      revision: main
