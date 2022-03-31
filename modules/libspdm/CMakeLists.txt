@@ -25,7 +25,8 @@ if(CONFIG_LIBSPDM)
         ${LIBSPDM_DIR}/library/spdm_crypt_lib/libspdm_crypt_crypt.c
     )
 
-    zephyr_library_sources(
+    zephyr_library_sources_ifdef(
+        LIBSPDM_REQUESTER
         ${LIBSPDM_DIR}/library/spdm_requester_lib/libspdm_req_challenge.c
         ${LIBSPDM_DIR}/library/spdm_requester_lib/libspdm_req_communication.c
         ${LIBSPDM_DIR}/library/spdm_requester_lib/libspdm_req_encap_certificate.c
@@ -51,7 +52,8 @@ if(CONFIG_LIBSPDM)
         ${LIBSPDM_DIR}/library/spdm_requester_lib/libspdm_req_send_receive.c
     )
 
-    zephyr_library_sources(
+    zephyr_library_sources_ifdef(
+        LIBSPDM_RESPONDER
         ${LIBSPDM_DIR}/library/spdm_responder_lib/libspdm_rsp_algorithms.c
         ${LIBSPDM_DIR}/library/spdm_responder_lib/libspdm_rsp_capabilities.c
         ${LIBSPDM_DIR}/library/spdm_responder_lib/libspdm_rsp_certificate.c
@@ -85,9 +87,16 @@ if(CONFIG_LIBSPDM)
         ${LIBSPDM_DIR}/library/spdm_secured_message_lib/libspdm_secmes_session.c
     )
 
-    zephyr_library_sources(
+    zephyr_library_sources_ifdef(
+        LIBSPDM_TRANSPORT_MCTP
         ${LIBSPDM_DIR}/library/spdm_transport_mctp_lib/libspdm_mctp_common.c
         ${LIBSPDM_DIR}/library/spdm_transport_mctp_lib/libspdm_mctp_mctp.c
+    )
+
+    zephyr_library_sources_ifdef(
+        LIBSPDM_TRANSPORT_PCIDOE
+        ${LIBSPDM_DIR}/library/spdm_transport_pcidoe_lib/libspdm_doe_common.c
+        ${LIBSPDM_DIR}/library/spdm_transport_pcidoe_lib/libspdm_doe_pcidoe.c
     )
 
 # zephyr_library_sources()

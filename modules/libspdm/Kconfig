@@ -2,4 +2,16 @@ config LIBSPDM
 	bool "DMTF LibSPDM Support"
 	help
 	  Enable this option to install libspdm into firmware.
+if LIBSPDM
+config LIBSPDM_REQUESTER
+	bool "Support SPDM requester"
 
+config LIBSPDM_RESPONDER
+	bool "Support SPDM responder"
+
+config LIBSPDM_TRANSPORT_MCTP
+	bool "Support MCTP transport"
+
+config LIBSPDM_TRANSPORT_PCIDOE
+	bool "Support PCIDOE transport"
+endif
